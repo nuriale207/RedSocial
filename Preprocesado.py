@@ -33,6 +33,7 @@ if __name__ == "__main__":
         idA=[]
         idB=[]
         clas=[]
+        pares=set()
         for i in range(len(dfRaw)):
 
             mediaA = dfRaw["A_follower_count"][i]+ dfRaw["A_following_count"][i] +dfRaw["A_listed_count"][i]+dfRaw["A_mentions_received"][i]+ dfRaw["A_retweets_received"][i]+dfRaw["A_mentions_sent"][i]+dfRaw["A_retweets_sent"][i]+dfRaw["A_follower_count"][i]+dfRaw["A_posts"][i]+dfRaw["A_network_feature_1"][i]+dfRaw["A_network_feature_2"][i]+dfRaw["A_network_feature_3"][i]
@@ -48,13 +49,22 @@ if __name__ == "__main__":
                 iDdic[mediaB] = idIndex
                 idIndex += 1
 
-            idA.append(iDdic[mediaA])
-            idB.append(iDdic[mediaB])
-            clas.append(dfRaw["Choice"][i])
+            if(iDdic[mediaA]<=500 and iDdic[mediaB]<=500 and (mediaA,mediaB) not in pares):
+                idA.append(iDdic[mediaA])
+                idB.append(iDdic[mediaB])
+                clas.append(dfRaw["Choice"][i])
+                pares.add((mediaA,mediaB))
+
         print(idA)
         print(idB)
 
+        class1=sum(clas)
+        class0=len(clas)-class1
+        print("Elements of class 0: "+str(class0))
+        print("Elements of class 1: "+str(class1))
+
         preprocesseData = {'idA': idA, 'idB': idB,"class":clas}
         df = pd.DataFrame(preprocesseData)
+        print(str(idIndex))
 
-        df.to_csv(path_or_buf="data/preprocessedTrain.csv", sep=',', encoding="utf-8",index=False)
+        df.to_csv(path_or_buf="data/preprocessedTrainReduced.csv", sep=',', encoding="utf-8",index=False)
