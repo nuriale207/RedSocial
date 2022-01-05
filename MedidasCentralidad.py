@@ -4,6 +4,7 @@ import networkx as nx
 import pandas as pd
 import scipy
 
+dfTwitter=pd.read_csv("data/twitterDataReduced.csv", encoding="utf-8")
 df = pd.read_csv("data/preprocessedTrainReduced.csv", encoding="utf-8")
 
 graph = nx.DiGraph()

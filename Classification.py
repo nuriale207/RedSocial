@@ -9,6 +9,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score, cross_validate
 from numpy import genfromtxt
+
 if __name__ == "__main__":
 
     # if (len(sys.argv) - 1 != 2):
@@ -17,18 +18,16 @@ if __name__ == "__main__":
     #     print("Parameter 2: path to save the vocabulary csv file.")
 
     #Se obtiene el DF con las medidas de centralidad
-    df = pd.read_csv("data/caracteristicsTrainReduced.csv", dtype="float64")
+    df = pd.read_csv("data/twitterCentralityTrain.csv", dtype="float64")
 
     #Se separan las clases
     classes=df["class"]
-    print(classes)
 
     #Se elimina la columna clase del DataFrame
     train_data=df.drop(['class'],axis=1)
 
     #Se convierten los datos de entrenamiento a np array eliminando los Nan values
     train_data=train_data.to_numpy(dtype='float', na_value=0)
-    print(train_data)
 
     #CLASIFICADOR 1: Naive Bayes
 
@@ -74,8 +73,6 @@ if __name__ == "__main__":
             bestK=i
             bestScore=scores
 
-    print(best_accuracy)
-    print(bestK)
     KNN_results+="Best K: "+str(bestK)+"\n"
 
     accuracy_kn = np.mean(bestScore['test_accuracy'])

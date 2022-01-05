@@ -34,6 +34,7 @@ if __name__ == "__main__":
         idB=[]
         clas=[]
         pares=set()
+        dfReduced=dfRaw
         for i in range(len(dfRaw)):
 
             mediaA = dfRaw["A_follower_count"][i]+ dfRaw["A_following_count"][i] +dfRaw["A_listed_count"][i]+dfRaw["A_mentions_received"][i]+ dfRaw["A_retweets_received"][i]+dfRaw["A_mentions_sent"][i]+dfRaw["A_retweets_sent"][i]+dfRaw["A_follower_count"][i]+dfRaw["A_posts"][i]+dfRaw["A_network_feature_1"][i]+dfRaw["A_network_feature_2"][i]+dfRaw["A_network_feature_3"][i]
@@ -54,6 +55,8 @@ if __name__ == "__main__":
                 idB.append(iDdic[mediaB])
                 clas.append(dfRaw["Choice"][i])
                 pares.add((mediaA,mediaB))
+            else:
+                dfReduced=dfReduced.drop(labels=i,axis=0)
 
         print(idA)
         print(idB)
@@ -67,4 +70,5 @@ if __name__ == "__main__":
         df = pd.DataFrame(preprocesseData)
         print(str(idIndex))
 
-        df.to_csv(path_or_buf="data/preprocessedTrainReduced.csv", sep=',', encoding="utf-8",index=False)
+        #df.to_csv(path_or_buf="data/preprocessedTrainReduced.csv", sep=',', encoding="utf-8",index=False)
+        dfReduced.to_csv(path_or_buf="data/twitterDataReduced.csv", sep=',', encoding="utf-8",index=False)
