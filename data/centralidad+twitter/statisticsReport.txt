@@ -1,0 +1,37 @@
+SHAPIRO TEST
+
+RF_accuracy: ShapiroResult(statistic=0.9440204501152039, pvalue=0.5985524654388428)
+NB_accuracy: ShapiroResult(statistic=0.9520925879478455, pvalue=0.6932933330535889)
+ANOVA TEST between: RF_accuracy and NB_accuracy : F_onewayResult(statistic=670.234203037851, pvalue=1.0746689527169008e-15)
+
+SHAPIRO TEST
+
+RF_accuracy: ShapiroResult(statistic=0.9440204501152039, pvalue=0.5985524654388428)
+KNN_accuracy: ShapiroResult(statistic=0.9513601064682007, pvalue=0.6846095323562622)
+ANOVA TEST between: RF_accuracy and KNN_accuracy : F_onewayResult(statistic=0.06677154653831648, pvalue=0.7990282930370932)
+
+SHAPIRO TEST
+
+RF_accuracy: ShapiroResult(statistic=0.9440204501152039, pvalue=0.5985524654388428)
+MLP_accuracy: ShapiroResult(statistic=0.8490619659423828, pvalue=0.056614700704813004)
+ANOVA TEST between: RF_accuracy and MLP_accuracy : F_onewayResult(statistic=7.873964265794843, pvalue=0.011684009621688881)
+
+SHAPIRO TEST
+
+NB_accuracy: ShapiroResult(statistic=0.9520925879478455, pvalue=0.6932933330535889)
+KNN_accuracy: ShapiroResult(statistic=0.9513601064682007, pvalue=0.6846095323562622)
+ANOVA TEST between: NB_accuracy and KNN_accuracy : F_onewayResult(statistic=652.1724918990286, pvalue=1.3657234425425835e-15)
+
+SHAPIRO TEST
+
+NB_accuracy: ShapiroResult(statistic=0.9520925879478455, pvalue=0.6932933330535889)
+MLP_accuracy: ShapiroResult(statistic=0.8490619659423828, pvalue=0.056614700704813004)
+ANOVA TEST between: NB_accuracy and MLP_accuracy : F_onewayResult(statistic=99.07053499761314, pvalue=9.595827247652111e-09)
+
+SHAPIRO TEST
+
+KNN_accuracy: ShapiroResult(statistic=0.9513601064682007, pvalue=0.6846095323562622)
+MLP_accuracy: ShapiroResult(statistic=0.8490619659423828, pvalue=0.056614700704813004)
+ANOVA TEST between: KNN_accuracy and MLP_accuracy : F_onewayResult(statistic=7.0752462706103465, pvalue=0.015950329780975877)
+
+
