@@ -9,6 +9,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score, cross_validate
 from numpy import genfromtxt
+from sklearn import tree
 
 from scipy import stats
 
@@ -44,18 +45,28 @@ if __name__ == "__main__":
 
         accuracy_nb=np.mean(scores_nb['test_accuracy'])
         NB_results+="Accuracy: "+str(accuracy_nb) +"\n"
+        NB_results+="Stdev: "+str(np.std(scores_nb['test_accuracy']))+ "\n"
+
 
         precision_nb=np.mean(scores_nb['test_precision'])
         NB_results+="Precision: "+str(precision_nb) +"\n"
+        NB_results+="Stdev: "+str(np.std(scores_nb['test_precision']))+ "\n"
+
 
         recall_nb=np.mean(scores_nb['test_recall'])
         NB_results+="Recall: "+str(recall_nb) +"\n"
+        NB_results+="Stdev: "+str(np.std(scores_nb['test_recall']))+ "\n"
+
 
         f_measure_nb=np.mean(scores_nb['test_f1'])
         NB_results+="F-measure: "+str(f_measure_nb) +"\n"
+        NB_results+="Stdev: "+str(np.std(scores_nb['test_f1']))+ "\n"
+
 
         roc_auc_nb=np.mean(scores_nb['test_roc_auc'])
         NB_results+="ROC_auc: "+str(roc_auc_nb) +"\n"
+        NB_results+="Stdev: "+str(np.std(scores_nb['test_roc_auc']))+ "\n"
+
 
         print(NB_results)
         #CLASIFICADOR 2: KNN
@@ -82,18 +93,28 @@ if __name__ == "__main__":
 
         accuracy_kn = np.mean(bestScore_nb['test_accuracy'])
         KNN_results += "Accuracy: " + str(accuracy_kn) + "\n"
+        KNN_results+="Stdev: "+str(np.std(bestScore_nb['test_accuracy']))+ "\n"
+
 
         precision_kn = np.mean(bestScore_nb['test_precision'])
         KNN_results += "Precision: " + str(precision_kn) + "\n"
+        KNN_results+="Stdev: "+str(np.std(bestScore_nb['test_precision']))+ "\n"
+
 
         recall_kn = np.mean(bestScore_nb['test_recall'])
         KNN_results += "Recall: " + str(recall_kn) + "\n"
+        KNN_results+="Stdev: "+str(np.std(bestScore_nb['test_recall']))+ "\n"
+
 
         f_measure_kn = np.mean(bestScore_nb['test_f1'])
         KNN_results += "F-measure: " + str(f_measure_kn) + "\n"
+        KNN_results+="Stdev: "+str(np.std(bestScore_nb['test_f1']))+ "\n"
+
 
         roc_auc_kn = np.mean(bestScore_nb['test_roc_auc'])
         KNN_results += "ROC_auc: " + str(roc_auc_kn) + "\n"
+        KNN_results+="Stdev: "+str(np.std(bestScore_nb['test_roc_auc']))+ "\n"
+
 
         print(KNN_results)
 
@@ -120,18 +141,27 @@ if __name__ == "__main__":
 
         accuracy_mlp = np.mean(bestScore_mlp['test_accuracy'])
         MLP_results += "Accuracy: " + str(accuracy_mlp) + "\n"
+        MLP_results+="Stdev: "+str(np.std(bestScore_mlp['test_accuracy']))+ "\n"
 
         precision_mlp = np.mean(bestScore_mlp['test_precision'])
         MLP_results += "Precision: " + str(precision_mlp) + "\n"
+        MLP_results+="Stdev: "+str(np.std(bestScore_mlp['test_precision']))+ "\n"
+
 
         recall_mlp = np.mean(bestScore_mlp['test_recall'])
         MLP_results += "Recall: " + str(recall_mlp) + "\n"
+        MLP_results+="Stdev: "+str(np.std(bestScore_mlp['test_recall']))+ "\n"
+
 
         f_measure_mlp = np.mean(bestScore_mlp['test_f1'])
         MLP_results += "F-measure: " + str(f_measure_mlp) + "\n"
+        MLP_results+="Stdev: "+str(np.std(bestScore_mlp['test_f1']))+ "\n"
+
 
         roc_auc_mlp = np.mean(bestScore_mlp['test_roc_auc'])
         MLP_results += "ROC_auc: " + str(roc_auc_mlp) + "\n"
+        MLP_results+="Stdev: "+str(np.std(bestScore_mlp['test_roc_auc']))+ "\n"
+
 
         print(MLP_results)
 
@@ -144,33 +174,69 @@ if __name__ == "__main__":
         scores_rf = cross_validate(rf_clf, train_data, np.array(classes), cv=10,
                                 scoring=('accuracy', 'precision', 'recall', 'f1', 'roc_auc'))
 
-        accuracy_nb = np.mean(scores_rf['test_accuracy'])
-        RF_results += "Accuracy: " + str(accuracy_nb) + "\n"
+        accuracy_rf = np.mean(scores_rf['test_accuracy'])
+        RF_results += "Accuracy: " + str(accuracy_rf) + "\n"
 
-        precision_nb = np.mean(scores_rf['test_precision'])
-        RF_results += "Precision: " + str(precision_nb) + "\n"
+        precision_rf = np.mean(scores_rf['test_precision'])
+        RF_results += "Precision: " + str(precision_rf) + "\n"
 
-        recall_nb = np.mean(scores_rf['test_recall'])
-        RF_results += "Recall: " + str(recall_nb) + "\n"
+        recall_rf = np.mean(scores_rf['test_recall'])
+        RF_results += "Recall: " + str(recall_rf) + "\n"
 
-        f_measure_nb = np.mean(scores_rf['test_f1'])
-        RF_results += "F-measure: " + str(f_measure_nb) + "\n"
+        f_measure_rf = np.mean(scores_rf['test_f1'])
+        RF_results += "F-measure: " + str(f_measure_rf) + "\n"
 
-        roc_auc_nb = np.mean(scores_rf['test_roc_auc'])
-        RF_results += "ROC_auc: " + str(roc_auc_nb) + "\n"
-
+        roc_auc_rf = np.mean(scores_rf['test_roc_auc'])
+        RF_results += "ROC_auc: " + str(roc_auc_rf) + "\n"
         print(RF_results)
 
-        f4 = open(sys.argv[2]+"/classificationReport.txt", 'a')
-        f4.write(NB_results+"\n"+MLP_results+"\n"+KNN_results+"\n"+RF_results)
+        #CLASIFICADOR 5: DECISION TREE
+
+        DT_results = "RESULTADOS DECISION TREE \n\n"
+
+        dt_clf = tree.DecisionTreeClassifier()
+        dt_clf.fit(train_data,np.array(classes))
+
+        scores_dt = cross_validate(dt_clf, train_data, np.array(classes), cv=10,
+                                   scoring=('accuracy', 'precision', 'recall', 'f1', 'roc_auc'))
+
+        accuracy_dt = np.mean(scores_dt['test_accuracy'])
+        DT_results += "Accuracy: " + str(accuracy_dt) + "\n"
+        DT_results+="Stdev: "+str(np.std(scores_dt['test_accuracy']))+ "\n"
+
+        precision_dt = np.mean(scores_dt['test_precision'])
+        DT_results += "Precision: " + str(precision_dt) + "\n"
+        DT_results+="Stdev: "+str(np.std(scores_dt['test_precision']))+ "\n"
+
+
+        recall_dt = np.mean(scores_dt['test_recall'])
+        DT_results += "Recall: " + str(recall_dt) + "\n"
+        DT_results+="Stdev: "+str(np.std(scores_dt['test_recall']))+ "\n"
+
+
+        f_measure_dt = np.mean(scores_dt['test_f1'])
+        DT_results += "F-measure: " + str(f_measure_dt) + "\n"
+        DT_results+="Stdev: "+str(np.std(scores_dt['test_f1']))+ "\n"
+
+
+        roc_auc_dt = np.mean(scores_dt['test_roc_auc'])
+        DT_results += "ROC_auc: " + str(roc_auc_dt) + "\n"
+        DT_results+="Stdev: "+str(np.std(scores_dt['test_roc_auc']))+ "\n"
+
+
+        print(DT_results)
+        f4 = open(sys.argv[2]+"/DTReport.txt", 'a')
+        f4.write(NB_results+"\n"+MLP_results+"\n"+KNN_results+"\n"+RF_results+"\n"+DT_results)
         f4.write("\n")
         f4.close()
 
         evaluation_metrics = {"NB_accuracy":scores_nb["test_accuracy"],"NB_precision":scores_nb["test_precision"],"NB_recall":scores_nb["test_recall"],"NB_fmeasure":scores_nb["test_f1"],"NB_roc_auc":scores_nb["test_roc_auc"],
                               "KNN_accuracy":bestScore_nb["test_accuracy"],"KNN_precision":bestScore_nb["test_precision"],"KNN_recall":bestScore_nb["test_recall"],"KNN_fmeasure":bestScore_nb["test_f1"],"KNN_roc_auc":bestScore_nb["test_roc_auc"],
                               "MLP_accuracy":bestScore_mlp["test_accuracy"],"MLP_precision":bestScore_mlp["test_precision"],"MLP_recall":bestScore_mlp["test_recall"],"MLP_fmeasure":bestScore_mlp["test_f1"],"MLP_roc_auc":bestScore_mlp["test_roc_auc"],
-                              "RF_accuracy":scores_rf["test_accuracy"],"RF_precision":scores_rf["test_precision"],"RF_recall":scores_rf["test_recall"],"RF_fmeasure":scores_rf["test_f1"],"RF_roc_auc":scores_rf["test_roc_auc"]}
+                              "RF_accuracy":scores_rf["test_accuracy"],"RF_precision":scores_rf["test_precision"],"RF_recall":scores_rf["test_recall"],"RF_fmeasure":scores_rf["test_f1"],"RF_roc_auc":scores_rf["test_roc_auc"],
+                              "DT_accuracy":scores_dt["test_accuracy"],"DT_precision":scores_dt["test_precision"],"DT_recall":scores_dt["test_recall"],"DT_fmeasure":scores_dt["test_f1"],"DT_roc_auc":scores_dt["test_roc_auc"]}
 
         pd_metrics=pd.DataFrame(evaluation_metrics)
 
-        pd_metrics.to_csv(path_or_buf=sys.argv[2]+"/classifiersEvaluationMetrics.csv", sep=',', encoding="utf-8", index=False)
+
+        pd_metrics.to_csv(path_or_buf=sys.argv[2]+"/DTEvaluationMetrics.csv", sep=',', encoding="utf-8", index=False)

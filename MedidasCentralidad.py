@@ -1,8 +1,6 @@
-import igraph as igraph
 import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
-import scipy
 
 dfTwitter=pd.read_csv("data/twitterDataReduced.csv", encoding="utf-8")
 df = pd.read_csv("data/preprocessedTrainReduced.csv", encoding="utf-8")
@@ -43,14 +41,6 @@ between_centrality=nx.betweenness_centrality(graph)
 print("between_centrality")
 print(between_centrality)
 
-# information_centrality=nx.information_centrality(graph)
-# print("information_centrality")
-# print(information_centrality)
-
-# number_cliques=nx.number_of_cliques(graph)
-# print("number_cliques")
-# print(number_cliques)
-
 constraint=nx.constraint(graph)
 print("constraint")
 print(constraint)
@@ -59,15 +49,13 @@ effective_size=nx.effective_size(graph)
 print("effective_size")
 print(effective_size)
 
-clustering_coefficient=nx.average_clustering(graph)
-print("clustering_coefficient")
-print(clustering_coefficient)
-
 hubs_centrality,authority_centrality = nx.hits(graph)
 print("hubs_centrality")
 print(hubs_centrality)
 print("authority_centrality")
 print(authority_centrality)
+A_deg_centrality=[]
+B_deg_centrality=[]
 
 A_in_deg_centrality=[]
 B_in_deg_centrality=[]
@@ -93,6 +81,9 @@ B_hubs_centrality=[]
 A_author_centrality=[]
 B_author_centrality=[]
 for idA,idB,weight in graph.edges(data=True):
+    A_deg_centrality.append(deg_centrality[idA])
+    B_deg_centrality.append(deg_centrality[idB])
+
     A_in_deg_centrality.append(in_deg_centrality[idA])
     B_in_deg_centrality.append(in_deg_centrality[idB])
 
@@ -145,14 +136,24 @@ print(len(B_author_centrality))
 
 print(len(list(df["class"])))
 
-preprocesseData = {"A_in_deg_centrality": A_in_deg_centrality,"B_in_deg_centrality": B_in_deg_centrality,
-                   "A_out_deg_centrality": A_out_deg_centrality,"B_out_deg_centrality": B_out_deg_centrality,
-                   "A_eigen_centrality": A_eigen_centrality,"B_eigen_centrality": B_eigen_centrality,
-                   "A_between_centrality": A_between_centrality,"B_between_centrality": B_between_centrality,
-                   "A_constraint_centrality": A_out_deg_centrality,"B_constraint_centrality": B_out_deg_centrality,
-                   "A_effective_net_size": A_effective,"B_effective_net_size": B_effective,
-                   "A_hubs_centrality": A_hubs_centrality,"B_hubs_centrality": B_hubs_centrality,
-                   "A_author_centrality": A_author_centrality, "B_author_centrality": B_author_centrality,"class":list(df["class"])}
+preprocesseData = {"A_deg_centrality": A_deg_centrality,
+                   "A_in_deg_centrality": A_in_deg_centrality,
+                   "A_out_deg_centrality": A_out_deg_centrality,
+                   "A_eigen_centrality": A_eigen_centrality,
+                   "A_between_centrality": A_between_centrality,
+                   "A_constraint_centrality": A_out_deg_centrality,
+                   "A_effective_net_size": A_effective,
+                   "A_hubs_centrality": A_hubs_centrality,
+                   "A_author_centrality": A_author_centrality,
+                   "B_deg_centrality": B_deg_centrality,
+                   "B_in_deg_centrality": B_in_deg_centrality,
+                   "B_out_deg_centrality": B_out_deg_centrality,
+                   "B_eigen_centrality": B_eigen_centrality,
+                   "B_between_centrality": B_between_centrality,
+                   "B_constraint_centrality": B_out_deg_centrality,
+                   "B_effective_net_size": B_effective,
+                   "B_hubs_centrality": B_hubs_centrality,
+                   "B_author_centrality": B_author_centrality, "class": list(df["class"])}
 # print(len(list(in_deg_centrality.values())))
 # print(len(list(out_deg_centrality.values())))
 # print(len(list(eigenvector_centrality.values())))
@@ -164,6 +165,6 @@ preprocesseData = {"A_in_deg_centrality": A_in_deg_centrality,"B_in_deg_centrali
 
 df = pd.DataFrame(preprocesseData)
 
-df.to_csv(path_or_buf="data/caracteristicsTrainReduced.csv", sep=',', encoding="utf-8", index=False)
+df.to_csv(path_or_buf="data/caracteristicsTrainReduced2.csv", sep=',', encoding="utf-8", index=False)
 
 

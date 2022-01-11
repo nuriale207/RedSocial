@@ -34,8 +34,10 @@ if __name__ == "__main__":
 
         accuracy_MLP=df["MLP_accuracy"]
 
+        accuracy_DT=df["DT_accuracy"]
+
         results_list={"RF_accuracy":accuracy_RF,"NB_accuracy":accuracy_NB,"KNN_accuracy":accuracy_KNN,
-                      "MLP_accuracy":accuracy_MLP}
+                      "MLP_accuracy":accuracy_MLP,"DT_accuracy":accuracy_DT}
         report=""
         for i in range(len(results_list.values())):
             for j in range(i+1,len(results_list.values())):
