@@ -1,0 +1,19 @@
+SHAPIRO TEST
+
+centralidad: ShapiroResult(statistic=0.9365679025650024, pvalue=0.5154930353164673)
+centralidad_twitter: ShapiroResult(statistic=0.9440204501152039, pvalue=0.5985524654388428)
+ANOVA TEST between: centralidad and centralidad_twitter : F_onewayResult(statistic=1058.5123248134976, pvalue=1.9091915475694786e-17)
+
+SHAPIRO TEST
+
+centralidad: ShapiroResult(statistic=0.9365679025650024, pvalue=0.5154930353164673)
+twitter: ShapiroResult(statistic=0.9371260404586792, pvalue=0.5214999914169312)
+ANOVA TEST between: centralidad and twitter : F_onewayResult(statistic=711.8252175413452, pvalue=6.333342484851974e-16)
+
+SHAPIRO TEST
+
+centralidad_twitter: ShapiroResult(statistic=0.9440204501152039, pvalue=0.5985524654388428)
+twitter: ShapiroResult(statistic=0.9371260404586792, pvalue=0.5214999914169312)
+ANOVA TEST between: centralidad_twitter and twitter : F_onewayResult(statistic=4.675162577964581, pvalue=0.044313298992243635)
+
+
